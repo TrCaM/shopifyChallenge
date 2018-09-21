@@ -12,9 +12,9 @@ const Shop = `
   }
 
   extend type Query {
-    getShop(shopId: ID!): Shop
-    getProducts(shopId: ID!): [Product!]!
-    getOrders(shopId: ID!): [Order!]!
+    shop(shopId: ID!): Shop
+    products(shopId: ID!): [Product!]!
+    orders(shopId: ID!): [Order!]!
   }
 
   extend type Mutation {

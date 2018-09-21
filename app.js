@@ -3,6 +3,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 const winston = require('winston');
+const { promisify } = require('util');
 
 const logger = winston.createLogger({
   level: 'info',
@@ -26,7 +27,7 @@ const connection = mysql.createConnection({
   user: 'root',
   password: 'password',
   database: 'simpleShop'
-})
+});
 
 connection.connect((err) => {
   if (err) {
@@ -34,13 +35,18 @@ connection.connect((err) => {
     throw err;
   }
   logger.info('Connected to the database!');
-})
+});
+
+/* Promisify connection */
+connection.query = promisify(connection.query);
+
 var app = express();
 
-// app.use('/graphql', graphqlHTTP({
-//   schema: schema,
-//   rootValue: root,
-//   graphiql: true,
-// }));
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  context: { mysql, connection },
+  graphiql: true,
+}));
 
 module.exports = app;

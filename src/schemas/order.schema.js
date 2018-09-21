@@ -6,6 +6,8 @@ const Order = `
   type Order {
     id: ID!
     lineItems: [LineItem!]
+    customer: String!
+    timestamp: Date!
     value: Float!
     shop: Shop!
   }
