@@ -1,4 +1,4 @@
-const Shop = `
+const ShopSchema = `
   input ShopInput {
     name: String!
     owner: String!
@@ -22,3 +22,5 @@ const Shop = `
     updateShopInfo(input: ShopInput): Shop
   }
 `;
+
+export default () => [ShopSchema];

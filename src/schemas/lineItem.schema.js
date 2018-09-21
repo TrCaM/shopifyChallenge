@@ -1,4 +1,4 @@
-const LineItem = `
+const LineItemSchema = `
   input LineItemInput {
     productId: ID!,
     quantity: Int!
@@ -11,4 +11,4 @@ const LineItem = `
   }
 `;
 
-export default () => [LineItem];
+export default () => [LineItemSchema];

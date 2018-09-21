@@ -1,4 +1,4 @@
-const Product = `
+const ProductSchema = `
   input ProductInput {
     name: String!
     description: String
@@ -26,4 +26,4 @@ const Product = `
   }
 `;
 
-export default () => [Product];
+export default () => [ProductSchema];

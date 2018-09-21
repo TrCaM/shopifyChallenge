@@ -1,4 +1,4 @@
-const Order = `
+const OrderSchema = `
   input OrderInput {
     lineItems: [LineItem!]!
   }
@@ -7,7 +7,7 @@ const Order = `
     id: ID!
     lineItems: [LineItem!]
     customer: String!
-    timestamp: Date!
+    timestamp: Int!
     value: Float!
     shop: Shop!
   }
@@ -25,3 +25,5 @@ const Order = `
     deleteOrder(orderId: ID!): Order
   }
 `;
+
+export default () => [OrderSchema];
