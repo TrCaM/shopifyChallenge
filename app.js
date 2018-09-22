@@ -1,52 +1,44 @@
-const mysql = require('mysql');
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
-const winston = require('winston');
-const { promisify } = require('util');
+'use strict';
 
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
-});
-
-/* Log to console if it's not in production */
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new winston.transports.Console({
-    format: winston.format.simple()
-  }));
-}
+import express from 'express';
+// import graphqlHTTP from 'express-graphql';
+// import {buildSchema} from 'graphql';
+import Sequelize from 'sequelize';
+import bodyParser from 'body-parser';
+import logger from './bin/server';
 
 /* Create connection with mysql database */
-const connection = mysql.createConnection({
+const sequelize = new Sequelize('simpleShop', 'root', 'password', {
   host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'simpleShop'
-});
+  dialect: 'mysql',
+  operatorsAliases: false,
 
-connection.connect((err) => {
-  if (err) {
-    logger.error('Error connecting to the database: %s', err);
-    throw err;
+  poll: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
   }
-  logger.info('Connected to the database!');
 });
 
-/* Promisify connection */
-connection.query = promisify(connection.query);
+sequelize.authenticate()
+    .then(() => {
+      logger.info('Connection has been established successfully.');
+    })
+    .catch(err => {
+      logger.error('Unable to connect to the database', err);
+    });
 
 var app = express();
 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  context: { mysql, connection },
-  graphiql: true,
-}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-module.exports = app;
+// app.use('/graphql', graphqlHTTP({
+//   schema: schema,
+//   rootValue: root,
+//   context: { mysql, connection },
+//   graphiql: true,
+// }));
+
+export default app;

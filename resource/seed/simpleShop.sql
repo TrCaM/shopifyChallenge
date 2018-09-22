@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS Orders (
 	OrderId char(36) NOT NULL,
     ShopId char(36) NOT NULL,
     CustomerName varchar(70) NOT NULL,
-    Timestamp timestamp NOT NULL,
     PRIMARY KEY (OrderId),
     FOREIGN KEY (ShopId) REFERENCES Shops(ShopId)
 );

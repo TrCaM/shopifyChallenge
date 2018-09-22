@@ -1,12 +1,13 @@
 {
   "name": "shopifychallenge",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "webpack --config webpack.config.js",
     "test": "mocha test/*.test.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
@@ -15,13 +16,30 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
     "pug": "2.0.0-beta11",
+    "sequelize": "^4.38.1",
     "winston": "^3.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
+    "eslint": "^5.6.0",
     "graphql": "^14.0.2",
     "mocha": "^5.2.0",
-    "supertest": "^3.3.0"
-  }
+    "start-server-webpack-plugin": "^2.2.5",
+    "supertest": "^3.3.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "main": "./bin/server.js",
+  "repository": "git@github.com:TrCaM/shopifyChallenge.git",
+  "author": "TrCaM <cmthscb@gmail.com>",
+  "license": "MIT"
 }
