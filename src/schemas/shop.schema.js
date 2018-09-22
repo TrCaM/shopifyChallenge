@@ -4,7 +4,7 @@ const ShopSchema = `
     owner: String!
   }
   type Shop {
-    id: ID!
+    id: Int!
     name: String!
     owner: String!
     products: [Product!]
@@ -12,9 +12,9 @@ const ShopSchema = `
   }
 
   extend type Query {
-    shop(shopId: ID!): Shop
-    products(shopId: ID!): [Product!]!
-    orders(shopId: ID!): [Order!]!
+    shop(shopId: Int!): Shop
+    products(shopId: Int!): [Product!]!
+    orders(shopId: Int!): [Order!]!
   }
 
   extend type Mutation {

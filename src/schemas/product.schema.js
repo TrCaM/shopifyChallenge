@@ -7,7 +7,7 @@ const ProductSchema = `
   }
 
   type Product {
-    id: ID!
+    id: Int!
     name: String!
     description: String
     unitPrice: Float!
@@ -16,13 +16,13 @@ const ProductSchema = `
   }
 
   extend type Query {
-    getProduct(productId: ID!): Product
+    getProduct(productId: Int!): Product
   }
 
   extend type Mutation {
-    addNewProduct(shopId: ID!, input: ProductInput!): Product
-    updateProduct(productId: ID!, input: ProductInput!): Product
-    removeProduct(productId: ID!): Product
+    addNewProduct(shopId: Int!, input: ProductInput!): Product
+    updateProduct(productId: Int!, input: ProductInput!): Product
+    removeProduct(productId: Int!): Product
   }
 `;
 

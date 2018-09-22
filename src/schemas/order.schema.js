@@ -4,25 +4,25 @@ const OrderSchema = `
   }
 
   type Order {
-    id: ID!
+    id: Int!
     lineItems: [LineItem!]
     customer: String!
-    timestamp: Int!
+    createdAt: Int!
     value: Float!
     shop: Shop!
   }
 
   extend type Query {
-    getOrder(orderId: ID!): Order
+    getOrder(orderId: Int!): Order
   }
 
   extend type Mutation {
-    newOrder(shopId: ID!, input: OrderInput!): Order
-    addLineItem(orderId: ID!, input: LineItemInput!): Order
-    addLineItems(orderId: ID!, input: [LineItemInput!]!): Order
-    removeLineItem(orderId: ID!, input: LineItemInput!): Order
-    removeLineItems(orderId: ID!, input: [LineItemInput!]): Order
-    deleteOrder(orderId: ID!): Order
+    newOrder(shopId: Int!, input: OrderInput!): Order
+    addLineItem(orderId: Int!, input: LineItemInput!): Order
+    addLineItems(orderId: Int!, input: [LineItemInput!]!): Order
+    removeLineItem(orderId: Int!, input: LineItemInput!): Order
+    removeLineItems(orderId: Int!, input: [LineItemInput!]): Order
+    deleteOrder(orderId: Int!): Order
   }
 `;
 

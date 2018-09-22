@@ -1,6 +1,6 @@
 const LineItemSchema = `
   input LineItemInput {
-    productId: ID!,
+    productId: Int!,
     quantity: Int!
   }
 
@@ -8,6 +8,7 @@ const LineItemSchema = `
     product: Product!
     name: String
     quantity: Int!
+    value: Float!
   }
 `;
 
