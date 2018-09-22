@@ -1,6 +1,8 @@
+'use strict';
+
 module.exports = function(sequelize, DataTypes) {
-  let lineItem = sequelize.define('lineItem', {
-    timestamps: true,
+  let LineItem = sequelize.define('LineItem', {
+    timestamp: true,
     tableName: 'LineItems',
     quantity: {
       type: DataTypes.INTEGER,
@@ -42,13 +44,11 @@ module.exports = function(sequelize, DataTypes) {
     ]
   });
 
-  lineItem.associate = function(models) {
-    models.lineItem.belongsTo(models.order, { as: 'order', foreignKey: 'orderId', targetKey: 'id' });
-    models.lineItem.belongsTo(
-      models.product, { as: 'product', foreignKey: 'productId', targetKey: 'id'});
+  LineItem.associate = function(models) {
+    models.LineItem.belongsTo(models.Order, { as: 'order', foreignKey: 'orderId', targetKey: 'id' });
+    models.LineItem.belongsTo(
+      models.Product, { as: 'Product', foreignKey: 'productId', targetKey: 'id'});
   };
 
-  return lineItem;
+  return LineItem;
 };
-
-

@@ -1,5 +1,6 @@
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  let shop = sequelize.define('shop', {
+  let Shop = sequelize.define('Shop', {
     timestamps: false,
     tableName: 'Shops',
     id: {
@@ -7,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true,
       field: 'id',
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -27,10 +29,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  shop.associate = function(models) {
-    models.shop.hasMany(models.product, { as: 'products', foreignKey: 'shopId', sourceKey: 'id' });
-    models.shop.hasMany(models.order, { as: 'orders', foreignKey: 'shopId', sourceKey: 'id' });
+  Shop.associate = function(models) {
+    models.Shop.hasMany(models.Product, { as: 'products', foreignKey: 'shopId', sourceKey: 'id' });
+    models.Shop.hasMany(models.Order, { as: 'orders', foreignKey: 'shopId', sourceKey: 'id' });
   };
 
-  return shop;
+  return Shop;
 };

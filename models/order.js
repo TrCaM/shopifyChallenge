@@ -1,7 +1,9 @@
+'use strict';
+
 module.exports = function(sequelize, DataTypes) {
-  let order = sequelize.define('order', {
+  let Order = sequelize.define('Order', {
     timestamps: true,
-    tableName: 'Orders',
+    tableName: 'Order',
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -39,12 +41,11 @@ module.exports = function(sequelize, DataTypes) {
     ]
   });
 
-  order.associate = function(models) {
-    models.order.belongsTo(models.order, { as: 'shop', foreignKey: 'shopId', targetKey: 'id' });
-    models.order.hasMany(
-      models.lineItem, { as: 'lineItems', foreignKey: 'orderId', targetKey: 'id'});
+  Order.associate = function(models) {
+    models.Order.belongsTo(models.Shop, { as: 'Shop', foreignKey: 'shopId', targetKey: 'id' });
+    models.Order.hasMany(
+      models.LineItem, { as: 'LineItems', foreignKey: 'orderId', targetKey: 'id'});
   };
 
-  return order;
+  return Order;
 };
-

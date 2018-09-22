@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "simpleshop",
+    "database": "simpleShop",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

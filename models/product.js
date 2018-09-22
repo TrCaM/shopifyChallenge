@@ -1,5 +1,7 @@
+'use strict';
+
 module.exports = function(sequelize, DataTypes) {
-  let product = sequelize.define('product', {
+  let Product = sequelize.define('Product', {
     timestamps: false,
     tableName: 'Products',
     id: {
@@ -33,10 +35,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  product.associate = function(models) {
-    models.product.belongsTo(models.shop, { as: 'shop', foreignKey: 'shopId', targetKey: 'id' });
+  Product.associate = function(models) {
+    models.Product.belongsTo(models.Shop, { as: 'Shop', foreignKey: 'shopId', targetKey: 'id' });
   };
 
-  return product;
+  return Product;
 };
-
