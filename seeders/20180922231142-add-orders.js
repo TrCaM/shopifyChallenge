@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface) => {
     return queryInterface.bulkInsert('Orders', [
       { 
         shopId: 1, 
@@ -21,8 +21,4 @@ module.exports = {
       }
     ]);
   },
-
-  down: (queryInterface, Sequelize) => {
-
-  }
 };

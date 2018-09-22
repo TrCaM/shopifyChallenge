@@ -39,7 +39,7 @@ module.exports = {
       });
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface
         .removeConstraint('Products', 'linkToShop')
         .then(function() {
