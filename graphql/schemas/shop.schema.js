@@ -11,13 +11,13 @@ const ShopSchema = `
     orders: [Order!]
   }
 
-  extend type Query {
+  type Query {
     shop(shopId: Int!): Shop
     products(shopId: Int!): [Product!]!
     orders(shopId: Int!): [Order!]!
   }
 
-  extend type Mutation {
+  type Mutation {
     newShop(input: ShopInput): Shop
     updateShopInfo(input: ShopInput): Shop
   }

@@ -1,3 +1,4 @@
+
 const ProductSchema = `
   input ProductInput {
     name: String!

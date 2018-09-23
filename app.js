@@ -1,27 +1,15 @@
 'use strict';
 
 import express from 'express';
-// import graphqlHTTP from 'express-graphql';
-// import {buildSchema} from 'graphql';
-import Sequelize from 'sequelize';
+import graphqlHTTP from 'express-graphql';
+import dataStore from './models/dataStore';
+import config from './config/config';
 import bodyParser from 'body-parser';
 import logger from './bin/server';
-
+import schema from './graphql/schema';
 /* Create connection with mysql database */
-const sequelize = new Sequelize('simpleShop', 'root', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-  operatorsAliases: false,
-
-  poll: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-});
-
-sequelize.authenticate()
+const models = dataStore.getModels(config[process.env.NODE_ENV], true);
+models.sequelize.authenticate()
     .then(() => {
       logger.info('Connection has been established successfully.');
     })
@@ -34,11 +22,10 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use('/graphql', graphqlHTTP({
-//   schema: schema,
-//   rootValue: root,
-//   context: { mysql, connection },
-//   graphiql: true,
-// }));
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  context: { models },
+  graphiql: true,
+}));
 
 export default app;

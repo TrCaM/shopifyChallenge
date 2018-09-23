@@ -1,6 +1,6 @@
 const OrderSchema = `
   input OrderInput {
-    lineItems: [LineItem!]!
+    customer: String!
   }
 
   type Order {
