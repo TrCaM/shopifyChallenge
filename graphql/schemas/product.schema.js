@@ -21,7 +21,7 @@ const ProductSchema = `
   }
 
   extend type Mutation {
-    addNewProduct(shopId: Int!, input: ProductInput!): Product
+    newProduct(shopId: Int!, input: ProductInput!): Product
     updateProduct(productId: Int!, input: ProductInput!): Product
     removeProduct(productId: Int!): Product
   }

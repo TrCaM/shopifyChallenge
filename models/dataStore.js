@@ -1,4 +1,8 @@
 import Sequelize from 'sequelize';
+import lineItem from './lineitem';
+import product from './product';
+import order from './order';
+import shop from './shop';
 
 let models = {};
 
@@ -13,12 +17,7 @@ function getModels (config, force = false) {
     config
   );
 
-  let modules = [
-    require('./lineitem.js'),
-    require('./order.js'),
-    require('./product.js'),
-    require('./shop.js'),
-  ];
+  let modules = [lineItem, product, order, shop];
 
   // Initialize models
   modules.forEach((module) => {

@@ -1,6 +1,11 @@
 'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+async function getValue(lineItem) {
+  let product = await lineItem.getProduct();
+  return product.unitPrice * lineItem.quantity;
+}
+
+export default (sequelize, DataTypes) => {
   let Order = sequelize.define('Order', {
     id: {
       type: DataTypes.INTEGER,
@@ -23,10 +28,12 @@ module.exports = function(sequelize, DataTypes) {
       lineItems() {
         return this.getLineItems();
       },
-      value() {
-        return this.getLineItems()
-            .map(item => item.value)
-            .reduce((prev, val) => prev + val, 0);
+      async value() {
+        let lineItems = await this.getLineItems();
+        let promises = lineItems.map(getValue);
+        return Promise
+            .all(promises)
+            .then(values => values.reduce((prev, val) => prev + val, 0));
       }
     },
     indexes: [
@@ -38,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     ],
     timestamps: true,
-    tableName: 'Order'
+    tableName: 'Orders'
   });
 
   Order.associate = function(models) {

@@ -7,7 +7,7 @@ const OrderSchema = `
     id: Int!
     lineItems: [LineItem!]
     customer: String!
-    createdAt: Int!
+    createdAt: String!
     value: Float!
     shop: Shop!
   }
@@ -19,10 +19,8 @@ const OrderSchema = `
   extend type Mutation {
     newOrder(shopId: Int!, input: OrderInput!): Order
     addLineItem(orderId: Int!, input: LineItemInput!): Order
-    addLineItems(orderId: Int!, input: [LineItemInput!]!): Order
     removeLineItem(orderId: Int!, input: LineItemInput!): Order
-    removeLineItems(orderId: Int!, input: [LineItemInput!]): Order
-    deleteOrder(orderId: Int!): Order
+    deleteOrder(orderId: Int!): String
   }
 `;
 

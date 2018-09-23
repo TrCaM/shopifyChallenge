@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+export default (sequelize, DataTypes) => {
   let LineItem = sequelize.define('LineItem', {
     quantity: {
       type: DataTypes.INTEGER,
@@ -27,11 +27,13 @@ module.exports = function(sequelize, DataTypes) {
       order() {
         return this.getOrder();
       },
-      value() {
-        this.getProduct().unitPrice;
+      async value() {
+        let product = await this.getProduct();
+        return product.unitPrice;
       },
-      name() {
-        return this.getProduct().name;
+      async name() {
+        let product = await this.getProduct();
+        return product.name;
       }
     },
     indexes: [

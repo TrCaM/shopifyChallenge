@@ -1,18 +1,30 @@
-class Product {
-  constructor({productId, shopId, productName, description, unitPrice, inventory}, context) {
-    //Setting basic data
-    this.productId = productId;
-    this.shopId = shopId;
-    this.productName = productName;
-    this.description = description;
-    this.unitPrice = unitPrice;
-    this.inventory = inventory;
-    //Setting context
-    this.context = context;
+export const Query = {
+  getProduct: async function(_, { productId }, { models }) {
+    return await models.Product.findById(productId);
   }
+};
 
-  async shop() {
-    let shopData = await this.context.db.find('shop', {shopId: this.shopId});
-    return new Shop(shopData, context);
+export const Mutation = {
+  async newProduct(_, { shopId, input: {name, description, unitPrice, inventory} }, { models }) {
+    let shop = await models.Shop.findById(shopId);
+    if (!shop) throw `Could not find shop[${shopId}]`;
+    return await models.Product.create({ shopId, name, description, unitPrice, inventory });
+  },
+  async updateProduct(_, { productId, input }, { models }) {
+    return await models.Product.findById(productId).then(product => {
+      if (product) {
+        return product.update(input);
+      }
+      throw `Could not find product[${productId}]`;
+    });
+  },
+  async removeProduct(_, { productId }, { models }) {
+    await models.Product.findById(productId).then(product => {
+      if (product) {
+        product.destroy();
+        return `Product[${productId}] was destroy`;
+      }
+      throw `Could not find product[${productId}]`;
+    });
   }
-}
+};

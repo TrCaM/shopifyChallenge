@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+export default (sequelize, DataTypes) => {
   let Shop = sequelize.define('Shop', {
     id: {
       type: DataTypes.INTEGER,

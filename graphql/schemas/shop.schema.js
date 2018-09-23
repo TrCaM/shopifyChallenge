@@ -20,7 +20,8 @@ const ShopSchema = `
 
   type Mutation {
     newShop(input: ShopInput): Shop
-    updateShopInfo(input: ShopInput): Shop
+    updateShopInfo(shopId: Int!, input: ShopInput): Shop
+    removeShop(shopId: Int!): String
   }
 `;
 
