@@ -2,8 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
   let LineItem = sequelize.define('LineItem', {
-    timestamp: true,
-    tableName: 'LineItems',
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -41,7 +39,9 @@ module.exports = function(sequelize, DataTypes) {
         name: 'itemsByOrder',
         fields: ['orderId'],
       }
-    ]
+    ],
+    timestamp: true,
+    tableName: 'LineItems'
   });
 
   LineItem.associate = function(models) {

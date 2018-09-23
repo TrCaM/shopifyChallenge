@@ -1,8 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   let Shop = sequelize.define('Shop', {
-    timestamps: false,
-    tableName: 'Shops',
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -26,7 +24,9 @@ module.exports = function(sequelize, DataTypes) {
       orders() {
         return this.getOrders();
       }
-    }
+    },
+    timestamps: false,
+    tableName: 'Shops'
   });
 
   Shop.associate = function(models) {

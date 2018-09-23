@@ -4,6 +4,7 @@ import OrderSchema from './schemas/order.schema';
 import ProductSchema from './schemas/product.schema';
 import ShopSchema from './schemas/shop.schema';
 import logger from '../bin/server';
+import resolvers from './resolvers';
 
 export default makeExecutableSchema({
   typeDefs: [
@@ -11,6 +12,6 @@ export default makeExecutableSchema({
   ],
   // we could also concatenate arrays
   // typeDefs: [SchemaDefinition, RootQuery].concat(Post)
-  resolvers: {},
+  resolvers,
   logger: { log: e => logger.error(e)}
 });

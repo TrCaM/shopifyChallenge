@@ -2,8 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
   let Order = sequelize.define('Order', {
-    timestamps: true,
-    tableName: 'Order',
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -38,7 +36,9 @@ module.exports = function(sequelize, DataTypes) {
         unique: false,
 
       }
-    ]
+    ],
+    timestamps: true,
+    tableName: 'Order'
   });
 
   Order.associate = function(models) {

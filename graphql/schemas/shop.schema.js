@@ -12,6 +12,7 @@ const ShopSchema = `
   }
 
   type Query {
+    shops: [Shop!]
     shop(shopId: Int!): Shop
     products(shopId: Int!): [Product!]!
     orders(shopId: Int!): [Order!]!
