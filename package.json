@@ -18,11 +18,11 @@
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.1",
     "sequelize-cli": "^4.1.1",
+    "start-server-webpack-plugin": "^2.2.5",
     "winston": "^3.1.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
     "webpack-node-externals": "^1.7.2",
-    "start-server-webpack-plugin": "^2.2.5",
     "graphql": "^14.0.2"
   },
   "devDependencies": {
