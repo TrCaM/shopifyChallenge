@@ -7,6 +7,8 @@ import config from './config/config';
 import bodyParser from 'body-parser';
 import logger from './bin/server';
 import schema from './graphql/schema';
+
+require('dotenv').config();
 /* Create connection with mysql database */
 const models = dataStore.getModels(config[process.env.NODE_ENV], true);
 models.sequelize.authenticate()
