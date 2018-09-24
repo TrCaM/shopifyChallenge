@@ -18,7 +18,11 @@
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.1",
     "sequelize-cli": "^4.1.1",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2",
+    "graphql": "^14.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -29,13 +33,9 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
     "eslint": "^5.6.0",
-    "graphql": "^14.0.2",
     "mocha": "^5.2.0",
     "start-server-webpack-plugin": "^2.2.5",
-    "supertest": "^3.3.0",
-    "webpack": "^4.19.1",
-    "webpack-cli": "^3.1.0",
-    "webpack-node-externals": "^1.7.2"
+    "supertest": "^3.3.0"
   },
   "main": "./bin/server.js",
   "repository": "git@github.com:TrCaM/shopifyChallenge.git",
